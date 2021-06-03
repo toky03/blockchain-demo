@@ -1,89 +1,134 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import Block from "./Block";
 import {
-    AppBar, Card,
-    CardContent,
-    Grid,
-    IconButton,
-    Toolbar,
+    AppBar, createStyles, IconButton,
+    Link, makeStyles, Menu, MenuItem, MuiThemeProvider, Theme, Toolbar,
     Typography
 } from "@material-ui/core";
-import AddIcon from '@material-ui/icons/Add'
+import theme from "./theming/theme";
+import BlockList from "./blocks/BlockList";
+import Overview from "./overview/Overview";
+import {BrowserRouter as Router} from 'react-router-dom';
+import {Route} from 'react-router';
+import Contact from "./contact/Contact";
+import {
+    IconFlagDE, IconFlagUK, IconFlagFR
+} from 'material-ui-flags';
+import Footer from "./Footer";
+import {useTranslation} from "react-i18next";
 
-export interface ChainBlock {
-    id: number;
-    hash?: string;
-    previousHash: string;
-}
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            flexGrow: 1,
+        },
+        menuButton: {
+            marginRight: theme.spacing(2),
+        },
+        title: {
+            flexGrow: 1,
+        },
+    }),
+);
 
 function App() {
 
-    const [blocks, setBlocks] = useState<ChainBlock[]>([]);
+    const classes = useStyles();
+
+    const [langIcon, setLangIcon] = useState<any>(null);
+    const {t, i18n} = useTranslation();
 
     useEffect(() => {
-        console.log('initial block set')
-        const firstBlock: ChainBlock = {id: 0, previousHash: '0000'}
-        setBlocks([firstBlock]);
-    }, [])
-
-
-    const blockChanged = (blockId: number, hash: string) => {
-        console.log('all blocks', blocks)
-        const unchangedBlocks = blocks.filter((block: ChainBlock) => block.id !== blockId);
-        const changedBlock = blocks.find((block: ChainBlock) => block.id === blockId);
-        if (changedBlock) {
-            setBlocks(() => [...unchangedBlocks, {...changedBlock, hash}])
+        console.log('language', i18n.language)
+        if (i18n.language) {
+            setLangIcon(() => i18n.language === 'de' ? <IconFlagDE/> : <IconFlagUK/>)
         }
-    }
+    }, [i18n, i18n.language])
 
-    function addBlock(): void {
-        const lastBlock = readLastBlock();
-        if (lastBlock && lastBlock.hash) {
-            setBlocks([...blocks, {id: lastBlock.id + 1, previousHash: lastBlock.hash}])
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const setLanguage = (lang: string | null) => {
+        if (lang) {
+            i18n.changeLanguage(lang)
         }
-    }
-
-    function readLastBlock(): ChainBlock | undefined {
-        const lastId: number = Math.max(...blocks.map((block: ChainBlock) => block.id));
-        return blocks.find((block: ChainBlock) => block.id === lastId);
-    }
-
+        setAnchorEl(null);
+    };
 
     return (
         <div className="App">
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
-                    </IconButton>
-                    <Typography variant="h6">
-                        Blockchain Demo
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <div className={'blockList'}>
-                <Grid
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                >{blocks?.sort((a: ChainBlock, b: ChainBlock) => a.id - b.id).map((block: ChainBlock) => (
-                    <Block key={block.id} hashChanged={(blockId: number, hash: string) => blockChanged(blockId, hash)}
-                           availableBlocks={blocks}
-                           blockId={block.id} previousHash={block.previousHash}/>)
-                )
-                }
-                    {readLastBlock()?.hash &&
-                    <Card style={{width: '500px', backgroundColor: 'primary', margin: '10px'}}>
-                        <CardContent>
+            <MuiThemeProvider theme={theme}>
+                <AppBar position="sticky" style={{opacity: '80%'}}>
+                    <Toolbar>
+
+                        <div className={classes.title}>
                             <Typography variant="h6">
-                                Add Block
+                                {t('title')}
                             </Typography>
-                            <IconButton onClick={addBlock}><AddIcon fontSize={'large'}/></IconButton>
-                        </CardContent>
-                    </Card>}
-                </Grid>
-            </div>
+                            <Link href="/" color={'textPrimary'}>
+                                {t('bar.overviewLabel')}
+                            </Link>
+                            <Link href="/block-demo" color={'textPrimary'}>
+                                {t('bar.demoLabel')}
+                            </Link>
+                            <Link href={"/contact"} color={'textPrimary'}>{t('bar.contactLabel')}</Link>
+                        </div>
+                        <IconButton
+                            aria-label="current language"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleMenu}
+                            color="primary"
+                        >
+                            {langIcon}
+                        </IconButton>
+                    </Toolbar>
+                    <Menu
+                        id="menu-appbar"
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={open}
+                        onClose={() => setLanguage(null)}
+                    >
+                        <MenuItem onClick={() => setLanguage('de')}><IconButton><IconFlagDE/></IconButton></MenuItem>
+                        <MenuItem onClick={() => setLanguage('en')}><IconButton><IconFlagUK/></IconButton></MenuItem>
+                    </Menu>
+                </AppBar>
+                <div style={{display: 'flex', flexFlow: 'column', height: '100vh'}}>
+                    <div style={{
+                        flex: '1 1 auto', backgroundColor: '#4f7fef',
+                    }}>
+                        <Router>
+                            <Route path={'/'} exact component={() =>
+                                <React.Suspense fallback={<span>... loading</span>}><Overview/> </React.Suspense>}
+                            />
+                            <Route path={'/block-demo'} exact
+                                   component={() => <React.Suspense fallback={<span>... loading</span>}><BlockList/>
+                                   </React.Suspense>}/>
+                            <Route path={'/contact'} exact
+                                   component={() => <React.Suspense fallback={<span>... loading</span>}><Contact/>
+                                   </React.Suspense>}/>
+                        </Router>
+                    </div>
+                    <div style={{flex: '1 1 auto'}}>
+                        <Footer/>
+                    </div>
+                </div>
+
+            </MuiThemeProvider>
+
         </div>
     );
 }

@@ -1,0 +1,10 @@
+{
+  "title": "Bienvenue chéz le Seeland Stakepool",
+  "sentConfirmation": "a été envoyé",
+  "form": {
+    "name": "Nom",
+    "subject": "Subjet",
+    "message": "Message",
+    "confirmButton": "Envoyer"
+  }
+}

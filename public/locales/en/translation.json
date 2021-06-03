@@ -1,0 +1,44 @@
+{
+  "title": "Seeland Stake Pool",
+  "welcome": "Welcome to Seeland Stakepool",
+  "sentConfirmation": "has been sent",
+  "bar": {
+    "overviewLabel": "Overview",
+    "demoLabel": "Blockchain Demo",
+    "contactLabel": "Contact"
+  },
+  "form": {
+    "name": "Name",
+    "subject": "Subject",
+    "message": "Message",
+    "confirmButton": "Send"
+  },
+  "headingCard": {
+    "hostingTitle": "Hosting",
+    "hostingContent": "<0>The Pool runs on a Kubernetes cluster with one pod each relay node and one for the producing Node</0><1>The advantage of Kubernetes is the fast recovery from an error if a defined Healthcheck becomes \"unhealthy\" the Pod will be restartet </1><2>In addition to that we are also able to deploy without any downtime wich allows us to do maintenance work without disruption and as a result of that we can guarante not to miss out any Slot.</2>",
+    "monitoringTitle": "Monitoring",
+    "monitoringContent": "<0>The Cardano Nodes are monitored 27/7 by Prometheus and Grafana.</0><1>If an error occours which can not be solved by a redeployment an alert will be sent immediately with the message.</1>",
+    "securityTitle": "Security",
+    "securityContent": "<0>The Kubernetes Cluster is hosted in Switzerland and only accessible via https.</0><1>Only the two Relay Nodes are visible to the outside, the block producing Node is only accessible from inside the Cluster.</1>"
+  },
+  "info": {
+    "title": "General Information",
+    "aboutMe": {
+      "title": "About me",
+      "content": "<p>After my studies in Industrial Engeneering i joined for almost 2 years aconsuling firm as a software developer where i was able to collect a lot of experiences.</p><p>After i earned enough experiences and because i wanted to move back to the Berner Seeland (hence the Name <strong>Seeland</strong> Stakepool) i switched my job to a swiss insurance company, where i still work as a Software Developer.</p>"
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "<0>You can reach me via this <1>Contact form</1></0>"
+    }
+  },
+  "demo": {
+    "heading": "Block #",
+    "content": "Block Content",
+    "predecessor": "Predecessor",
+    "nonce": "Nonce",
+    "hash": "Hash",
+    "mine": "Mine",
+    "addBlock": "Add block"
+  }
+}

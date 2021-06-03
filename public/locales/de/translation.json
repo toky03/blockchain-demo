@@ -1,0 +1,44 @@
+{
+  "title": "Seeland Stake Pool",
+  "welcome": "Willkommen beim Seeland Stakepool",
+  "sentConfirmation": "wurde versendet",
+  "bar": {
+    "overviewLabel": "Übersicht",
+    "demoLabel": "Blockchain Demo",
+    "contactLabel": "Kontakt"
+  },
+  "form": {
+    "name": "Name",
+    "subject": "Betreff",
+    "message": "Mitteilung",
+    "confirmButton": "Senden"
+  },
+  "headingCard": {
+    "hostingTitle": "Hosting",
+    "hostingContent": "<0>Der Pool läuft auf einem Kubernetes Cluster mit jeweils einem Pod für die zwei Relay Nodes und einem Pod für den Producing Node</0><1>Der Vorteil von Kubernetes ist, dass bei einem Fehlerfall der Pod angibt \"ungesund\" zu sein und Kubernetes startet daraufhin einen neuen Pod</1><2>Zusätzlich können auch Wartungsarbeiten unterbruchsfrei durchgeführt werden. Damit kann garantiert werden, dass kein Slot verfehlt wird.</2>",
+    "monitoringTitle": "Überwachung",
+    "monitoringContent": "<0>Die Cardano Nodes werden 27/7 mit Prometheus und Grafana überwacht.</0><1>Falls etwas schief läuft und nicht mit einem Redeployment behoben werden kann, wird durch das Alerting direkt eine Meldung versendet.</1>",
+    "securityTitle": "Sicherheit",
+    "securityContent": "<0>Das Kubernetes Cluster ist in der Schweiz gehostet und ist nur via eine https Verbindung erreichbar.</0><1>Es sind nur die beiden Relay Nodes gegen aussen sichtbar, der Block produzierende Node ist nur innerhalb des Kubernetes Clusters sichtbar.</1>"
+  },
+  "info": {
+    "title": "Generelle Informationen",
+    "aboutMe": {
+      "title": "Über mich",
+      "content": "<p>Nach meinem Studium zum Wirtschaftsingenieur stieg ich quasi als Quereinsteiger in die IT als Softwareentwickler bei einem Beratungsunternehmen ein. Dort konnte ich knapp zwei jahre lang Erfahrungen sammeln.</p><p>Nachdem ich genug Erfahrung gesammelt hatte und ich weil ich wieder zurück in das Berner Seeland (von dem her auch der name <strong>Seeland</strong> Stakepool) wechselte ich zu einer Schweizerischen Versicherung, bei der ich weiterhin als Software Entwickler arbeite.</p>"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "content": "<0>Erreichen kann man mich via <1>Kontaktformular</1></0>"
+    }
+  },
+  "demo": {
+    "heading": "Block #",
+    "content": "Block Inhalt",
+    "predecessor": "Vorgänger",
+    "nonce": "Nonce",
+    "hash": "Hash",
+    "mine": "Minen",
+    "addBlock": "Block hinzufügen"
+  }
+}
