@@ -80,11 +80,13 @@ function useReducer(reducer: (state: ChainBlock[], action: AddAction | DeleteAct
 }
 
 
+const MAX_RATE = 100;
+
 function BlockList() {
 
   const {t} = useTranslation();
   const [blocks, dispatch] = useReducer(blocksReducer, []);
-  const [miners, setMiners] = useState([new Miner(100, 'A'), new Miner(20, 'B')])
+  const [miners, setMiners] = useState([new Miner(MAX_RATE, 'A'), new Miner(20, 'B')])
 
   useEffect(() => {
     const firstBlock: ChainBlock = {id: 0, previousHash: '0000'}
@@ -94,7 +96,7 @@ function BlockList() {
   function updateMiner(refIndex: number, field: 'delay' | 'name', value: string | number | number[]): void {
     const updatedMiners = miners.map((miner: Miner, index: number) => {
       if (index === refIndex) {
-        return field === 'delay' ? new Miner(1 / (value as number), miner.name) : new Miner(miner.delay, value as string)
+        return field === 'delay' ? new Miner(MAX_RATE - (value as number), miner.name) : new Miner(miner.delay, value as string)
       }
       return miner;
     })
@@ -139,7 +141,7 @@ function BlockList() {
                   step={10}
                   marks
                   min={10}
-                  max={100}
+                  max={MAX_RATE}
                   onChange={(val: ChangeEvent<{}>, newVal: number | number[]) => updateMiner(0, 'delay', newVal)}
               />
             </CardContent>
@@ -153,13 +155,13 @@ function BlockList() {
                 Hash Rate
               </Typography>
               <Slider
-                  defaultValue={100}
+                  defaultValue={MAX_RATE}
                   aria-labelledby="discrete-slider"
                   valueLabelDisplay="auto"
                   step={10}
                   marks
                   min={10}
-                  max={100}
+                  max={MAX_RATE}
                   onChange={(val: ChangeEvent<{}>, newVal: number | number[]) => updateMiner(1, 'delay', newVal)}
               />
             </CardContent>
