@@ -77,6 +77,7 @@ function App() {
                             </Link>
                             <Link href={"/contact"} color={'textPrimary'}>{t('bar.contactLabel')}</Link>
                         </div>
+                        {t('language')}
                         <IconButton
                             aria-label="current language"
                             aria-controls="menu-appbar"

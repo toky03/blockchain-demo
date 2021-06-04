@@ -127,12 +127,12 @@ function BlockList() {
         >
           <Card style={cardStyle}>
             <CardContent>
-              <TextField label={'Miner Name'}
+              <TextField label={t('demo.minerName')}
                          onChange={(val: any) => updateMiner(0, 'name', val.target.value)}
 
               />
               <Typography id="discrete-slider" gutterBottom>
-                Hash Rate
+                {t('demo.hashrate')}
               </Typography>
               <Slider
                   defaultValue={30}
@@ -148,11 +148,11 @@ function BlockList() {
           </Card>
           <Card style={cardStyle}>
             <CardContent>
-              <TextField label={'Miner Name'}
+              <TextField label={t('demo.minerName')}
                          onChange={(val: any) => updateMiner(1, 'name', val.target.value)}
               />
               <Typography id="discrete-slider" gutterBottom>
-                Hash Rate
+                {t('demo.hashrate')}
               </Typography>
               <Slider
                   defaultValue={MAX_RATE}

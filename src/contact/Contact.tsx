@@ -6,6 +6,7 @@ import {useState} from "react";
 import MuiAlert, {AlertProps} from '@material-ui/lab/Alert';
 import {cardStyle} from "../theming/theme";
 import {useTranslation} from "react-i18next";
+import React from "react";
 
 
 function Alert(props: AlertProps) {
@@ -41,7 +42,7 @@ function Contact() {
 
     return (
         <Container maxWidth={'xs'}>
-            <Card style={{...cardStyle, padding: '30px'}} elevation={10}>
+            <Card style={{...cardStyle, padding: '30px', width: undefined}} elevation={10}>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={6} direction={'column'} justify={'space-around'}
                           alignContent={'space-around'}>

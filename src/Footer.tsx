@@ -12,7 +12,7 @@ function Footer() {
             flexDirection: 'row',
             justifyContent: 'center',
         }}>
-            <Typography>Copyright Marco Jakob</Typography>
+            <Typography>Made with &#10084; by Seeland Stakepool</Typography>
         </footer>
     )
 

@@ -197,10 +197,10 @@ function Block(props: BlockInputProps) {
                       backgroundColor: miner.hash === calHash ? cardStyle.backgroundColor : minerCard.backgroundColor
                     }}>
                       <List>
-                        <ListItemText primary={'Name'} secondary={miner.name}/>
-                        <ListItemText primary={'nonce'} secondary={miner.nonce}/>
+                        <ListItemText primary={t('demo.minerName')} secondary={miner.name}/>
+                        <ListItemText primary={t('demo.nonce')} secondary={miner.nonce}/>
                         <ListItemText style={{textOverflow: 'ellipsis', overflow: 'hidden'}}
-                                      primary={'hash'} secondary={miner.hash}/>
+                                      primary={t('demo.hash')} secondary={miner.hash}/>
                       </List>
                     </Card>
                   </Grid>
