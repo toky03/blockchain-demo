@@ -42,6 +42,7 @@
     "mine": "Mine",
     "addBlock": "Add block",
     "hashrate": "Hash Rate",
-    "minerName": "Name mining machine"
+    "minerName": "Name mining machine",
+    "stakeholderName": "Name Stakeholder / Stakepool"
   }
 }

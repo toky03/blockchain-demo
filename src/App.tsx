@@ -6,7 +6,7 @@ import {
     Typography
 } from "@material-ui/core";
 import theme from "./theming/theme";
-import BlockList from "./blocks/BlockList";
+import PowBlockList from "./blocks/PowBlockList";
 import Overview from "./overview/Overview";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Route} from 'react-router';
@@ -16,6 +16,7 @@ import {
 } from 'material-ui-flags';
 import Footer from "./Footer";
 import {useTranslation} from "react-i18next";
+import BlockOverview from "./blocks/BlockOverview";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -116,7 +117,7 @@ function App() {
                                 <React.Suspense fallback={<span>... loading</span>}><Overview/> </React.Suspense>}
                             />
                             <Route path={'/block-demo'} exact
-                                   component={() => <React.Suspense fallback={<span>... loading</span>}><BlockList/>
+                                   component={() => <React.Suspense fallback={<span>... loading</span>}><BlockOverview/>
                                    </React.Suspense>}/>
                             <Route path={'/contact'} exact
                                    component={() => <React.Suspense fallback={<span>... loading</span>}><Contact/>

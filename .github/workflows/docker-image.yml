@@ -7,18 +7,13 @@ on:
     branches: [ master ]
 
 jobs:
-
   build:
-    env:
-      tag: $(date +%s)
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: docker Login
       run:  echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag toky03/ssp-frontend-image:${{ github.run_number }}
+      run: docker build . --file Dockerfile --tag toky03/ssp-frontend-image:0.0.${{ github.run_number }}
     - name: Push the Docker image
-      run: docker push toky03/ssp-frontend-image:${{ github.run_number }}
+      run: docker push toky03/ssp-frontend-image:0.0.${{ github.run_number }}

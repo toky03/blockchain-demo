@@ -13,7 +13,7 @@ import React, {ChangeEvent, useEffect, useState} from "react";
 import {sha256} from "../utils/cryptoUtils";
 import {BehaviorSubject, merge, Observable, of} from "rxjs";
 import {delay, expand, map, switchMap, takeWhile} from "rxjs/operators";
-import {ChainBlock} from "./BlockList";
+import {ChainBlock} from "./PowBlockList";
 import {cardStyle} from "../theming/theme";
 import {useTranslation} from "react-i18next";
 
@@ -107,7 +107,7 @@ function initMiner(miner: Miner, content: string): Observable<MinerDisplay> {
   }));
 }
 
-function Block(props: BlockInputProps) {
+function PowBlock(props: BlockInputProps) {
   const {t} = useTranslation();
   const [[calHashObservable$, putContentVal], _] = useState(initialHashState(''));
   const [calHash, setCalHash] = useState('')
@@ -213,4 +213,4 @@ function Block(props: BlockInputProps) {
   )
 }
 
-export default Block;
+export default PowBlock;

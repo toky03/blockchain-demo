@@ -42,6 +42,7 @@
     "mine": "Minen",
     "addBlock": "Block hinzufügen",
     "hashrate": "Hash Frequenz",
-    "minerName": "Name Mining Maschine"
+    "minerName": "Name Mining Maschine",
+    "stakeholderName": "Name Anspruchsgruppe / Stakepool"
   }
 }

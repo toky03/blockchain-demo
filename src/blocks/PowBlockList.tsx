@@ -7,7 +7,7 @@ import {
   TextField,
   Typography
 } from "@material-ui/core";
-import Block, {Miner} from "./Block";
+import PowBlock, {Miner} from "./PowBlock";
 import AddIcon from "@material-ui/icons/Add";
 import React, {ChangeEvent, useEffect, useState} from "react";
 import {cardStyle} from "../theming/theme";
@@ -79,10 +79,9 @@ function useReducer(reducer: (state: ChainBlock[], action: AddAction | DeleteAct
   return [state, dispatch];
 }
 
-
 const MAX_RATE = 100;
 
-function BlockList() {
+function PowBlockList() {
 
   const {t} = useTranslation();
   const [blocks, dispatch] = useReducer(blocksReducer, []);
@@ -125,47 +124,29 @@ function BlockList() {
       <div className={'blockList'}>
         <Grid container spacing={0}
         >
-          <Card style={cardStyle}>
-            <CardContent>
-              <TextField label={t('demo.minerName')}
-                         onChange={(val: any) => updateMiner(0, 'name', val.target.value)}
+          {miners.map((miner: Miner, index: number) => (
+              <Card key={index} style={cardStyle}>
+                <CardContent>
+                  <TextField label={t('demo.minerName')}
+                             onChange={(val: any) => updateMiner(index, 'name', val.target.value)}
 
-              />
-              <Typography id="discrete-slider" gutterBottom>
-                {t('demo.hashrate')}
-              </Typography>
-              <Slider
-                  defaultValue={30}
-                  aria-labelledby="discrete-slider"
-                  valueLabelDisplay="auto"
-                  step={10}
-                  marks
-                  min={10}
-                  max={MAX_RATE}
-                  onChange={(val: ChangeEvent<{}>, newVal: number | number[]) => updateMiner(0, 'delay', newVal)}
-              />
-            </CardContent>
-          </Card>
-          <Card style={cardStyle}>
-            <CardContent>
-              <TextField label={t('demo.minerName')}
-                         onChange={(val: any) => updateMiner(1, 'name', val.target.value)}
-              />
-              <Typography id="discrete-slider" gutterBottom>
-                {t('demo.hashrate')}
-              </Typography>
-              <Slider
-                  defaultValue={MAX_RATE}
-                  aria-labelledby="discrete-slider"
-                  valueLabelDisplay="auto"
-                  step={10}
-                  marks
-                  min={10}
-                  max={MAX_RATE}
-                  onChange={(val: ChangeEvent<{}>, newVal: number | number[]) => updateMiner(1, 'delay', newVal)}
-              />
-            </CardContent>
-          </Card>
+                  />
+                  <Typography id="discrete-slider" gutterBottom>
+                    {t('demo.hashrate')}
+                  </Typography>
+                  <Slider
+                      defaultValue={30}
+                      aria-labelledby="discrete-slider"
+                      valueLabelDisplay="auto"
+                      step={10}
+                      marks
+                      min={10}
+                      max={MAX_RATE}
+                      onChange={(val: ChangeEvent<{}>, newVal: number | number[]) => updateMiner(index, 'delay', newVal)}
+                  />
+                </CardContent>
+              </Card>
+          ))}
         </Grid>
         <Grid
             container
@@ -173,11 +154,11 @@ function BlockList() {
             justify="center"
             alignItems="center"
         >{blocks?.sort((a: ChainBlock, b: ChainBlock) => a.id - b.id).map((block: ChainBlock) => (
-            <Block key={block.id}
-                   hashChanged={(blockId: number, hash: string) => blockChanged(blockId, hash)}
-                   miners={miners}
-                   availableBlocks={blocks}
-                   blockId={block.id} previousHash={block.previousHash}/>)
+            <PowBlock key={block.id}
+                      hashChanged={(blockId: number, hash: string) => blockChanged(blockId, hash)}
+                      miners={miners}
+                      availableBlocks={blocks}
+                      blockId={block.id} previousHash={block.previousHash}/>)
         )
         }
           {readLastBlock()?.hash &&
@@ -195,4 +176,4 @@ function BlockList() {
   )
 }
 
-export default BlockList;
+export default PowBlockList;
