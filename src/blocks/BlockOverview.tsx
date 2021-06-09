@@ -1,6 +1,5 @@
 import {Tab, Tabs} from "@material-ui/core";
 import React from "react";
-import {TabPanel} from "@material-ui/lab";
 import PowBlockList from "./PowBlockList";
 import PosBlockList from "./PosBlockList";
 

@@ -13,9 +13,9 @@ import React, {ChangeEvent, useEffect, useState} from "react";
 import {sha256} from "../utils/cryptoUtils";
 import {BehaviorSubject, merge, Observable, of} from "rxjs";
 import {delay, expand, map, switchMap, takeWhile} from "rxjs/operators";
-import {ChainBlock} from "./PowBlockList";
-import {cardStyle} from "../theming/theme";
+import {cardStyle, minerCard} from "../theming/theme";
 import {useTranslation} from "react-i18next";
+import {ChainBlock} from "./state";
 
 
 type BlockInputProps = {
@@ -69,16 +69,6 @@ export class Miner {
   toDisplay(): MinerDisplay {
     return {name: this._name, nonce: this._nonce, hash: this._hash}
   }
-}
-
-const minerCard = {
-  ...cardStyle,
-  width: undefined,
-  backgroundColor: '#FFFFFF',
-  opacity: '100%',
-  margin: '5px',
-  padding: '10px'
-
 }
 
 function initialHashState(initialInput: string): [Observable<string>, (val: string) => void] {

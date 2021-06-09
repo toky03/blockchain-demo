@@ -4,7 +4,6 @@ import {
   Grid,
   IconButton,
   Slider,
-  TextField,
   Typography
 } from "@material-ui/core";
 import PowBlock, {Miner} from "./PowBlock";
@@ -12,72 +11,8 @@ import AddIcon from "@material-ui/icons/Add";
 import React, {ChangeEvent, useEffect, useState} from "react";
 import {cardStyle} from "../theming/theme";
 import {useTranslation} from "react-i18next";
+import {blocksReducer, ChainBlock, useReducer} from "./state";
 
-export interface ChainBlock {
-  id: number;
-  hash?: string;
-  previousHash: string;
-}
-
-interface AddAction {
-  type: 'add'
-  payload: ChainBlock
-}
-
-interface DeleteAction {
-  type: 'remove'
-  payload: number
-}
-
-interface UpdateAction {
-  type: 'update'
-  payload: number
-  hash: string
-}
-
-
-function blocksReducer(state: ChainBlock[], action: AddAction | DeleteAction | UpdateAction): ChainBlock[] {
-  switch (action.type) {
-    case "add":
-      return [...state, action.payload]
-    case "remove":
-      return state.filter((chainBlock: ChainBlock) => action.payload !== chainBlock.id)
-    case "update": {
-      const changedBlock = state.find((block: ChainBlock) => block.id === action.payload);
-      if (changedBlock) {
-        const nextBlock = state.find((block: ChainBlock) => block.id === (changedBlock.id + 1));
-        const unchangedBlocks = state.filter((block: ChainBlock) => {
-          if (!!nextBlock) {
-            return block.id !== action.payload && block.id !== nextBlock.id
-          }
-          return block.id !== action.payload
-        });
-        if (!!nextBlock) {
-          return [...unchangedBlocks, ...[{...changedBlock, hash: action.hash}, {
-            ...nextBlock,
-            previousHash: action.hash
-          }]]
-        }
-        return [...unchangedBlocks, {...changedBlock, hash: action.hash}]
-      }
-      return state
-    }
-    default:
-      return state
-
-  }
-}
-
-function useReducer(reducer: (state: ChainBlock[], action: AddAction | DeleteAction | UpdateAction) => ChainBlock[], initialState: ChainBlock[]): [ChainBlock[], (action: AddAction | DeleteAction | UpdateAction) => void] {
-  const [state, setState] = useState(initialState);
-
-  function dispatch(action: AddAction | DeleteAction | UpdateAction) {
-    const nextState = reducer(state, action);
-    setState(nextState);
-  }
-
-  return [state, dispatch];
-}
 
 const MAX_RATE = 100;
 
@@ -92,10 +27,10 @@ function PowBlockList() {
     dispatch({type: 'add', payload: firstBlock});
   }, [])
 
-  function updateMiner(refIndex: number, field: 'delay' | 'name', value: string | number | number[]): void {
+  function updateMiner(refIndex: number, value: number | number[]): void {
     const updatedMiners = miners.map((miner: Miner, index: number) => {
       if (index === refIndex) {
-        return field === 'delay' ? new Miner(MAX_RATE - (value as number), miner.name) : new Miner(miner.delay, value as string)
+        return new Miner(MAX_RATE - (value as number), miner.name)
       }
       return miner;
     })
@@ -104,7 +39,7 @@ function PowBlockList() {
 
 
   const blockChanged = (blockId: number, hash: string) => {
-    dispatch({type: 'update', payload: blockId, hash})
+    dispatch({type: 'updateHash', payload: blockId, hash})
   }
 
   function addBlock(): void {
@@ -127,12 +62,8 @@ function PowBlockList() {
           {miners.map((miner: Miner, index: number) => (
               <Card key={index} style={cardStyle}>
                 <CardContent>
-                  <TextField label={t('demo.minerName')}
-                             onChange={(val: any) => updateMiner(index, 'name', val.target.value)}
-
-                  />
                   <Typography id="discrete-slider" gutterBottom>
-                    {t('demo.hashrate')}
+                    {t('demo.hashrate') + ' Miner '+ miner.name}
                   </Typography>
                   <Slider
                       defaultValue={30}
@@ -142,7 +73,7 @@ function PowBlockList() {
                       marks
                       min={10}
                       max={MAX_RATE}
-                      onChange={(val: ChangeEvent<{}>, newVal: number | number[]) => updateMiner(index, 'delay', newVal)}
+                      onChange={(val: ChangeEvent<{}>, newVal: number | number[]) => updateMiner(index,  newVal)}
                   />
                 </CardContent>
               </Card>

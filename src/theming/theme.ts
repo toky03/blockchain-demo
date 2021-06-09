@@ -84,3 +84,13 @@ export const cardStyle: CSSProperties = {
     margin: '10px',
     textAlign: "center"
 };
+
+export const minerCard = {
+    ...cardStyle,
+    width: undefined,
+    backgroundColor: '#FFFFFF',
+    opacity: '100%',
+    margin: '5px',
+    padding: '10px'
+
+}

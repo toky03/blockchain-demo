@@ -43,6 +43,11 @@
     "addBlock": "Add block",
     "hashrate": "Hash Rate",
     "minerName": "Name mining machine",
-    "stakeholderName": "Name Stakeholder / Stakepool"
+    "stakeholderName": "Name Stakeholder / Stakepool",
+    "stakeCount": "Number of Stake (ADA)",
+    "assignedStakeholder": "Assigned Stakeholder",
+    "proof": "Proof",
+    "encryptedMessage": "Encrypted Message",
+    "signate": "Sign"
   }
 }
