@@ -1,5 +1,6 @@
 import {createMuiTheme} from "@material-ui/core";
 import {CSSProperties} from "@material-ui/styles";
+
 const fontHeading = [
     '-apple-system',
     'BlinkMacSystemFont',
@@ -80,10 +81,19 @@ export const cardStyle: CSSProperties = {
     width: '500px',
     backgroundColor: '#70DA81',
     borderRadius: '20px',
-    opacity: '80%',
+    opacity: '90%',
     margin: '10px',
     textAlign: "center"
 };
+
+export const logoBackground: CSSProperties = {
+    backgroundImage: 'url(./ssp_logo_light.svg)',
+    backgroundSize: "100vh auto",
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '0 10vh',
+    backgroundAttachment: "fixed",
+    backgroundPositionX: 'center',
+}
 
 export const minerCard = {
     ...cardStyle,

@@ -237,9 +237,8 @@ function PosBlock(props: PosBlockInput) {
   return (<Card style={{
     ...cardStyle,
     width: '500px',
-    backgroundColor: proof === 'match' ? '#cde7c0' : '#ff000038',
-    margin: '10px',
-    opacity: '100%',
+    backgroundColor: proof === 'match' ? cardStyle.backgroundColor : '#ff000038',
+    margin: '10px'
   }}>
     <CardContent>
       <Typography variant="h6">
