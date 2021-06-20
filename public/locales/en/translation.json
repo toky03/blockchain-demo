@@ -22,6 +22,18 @@
     "securityTitle": "Security",
     "securityContent": "<0>The Kubernetes Cluster is hosted in Switzerland and only accessible via https.</0><1>Only the two Relay Nodes are visible to the outside, the block producing Node is only accessible from inside the Cluster.</1>"
   },
+  "cardano": {
+    "title": "Cardano and Staking",
+    "coin": {
+      "title": "Cardano and ADA",
+      "content": "<p>Cardano is a Proof of Work Blockchain (more of this in <1>comparison pow pos</1>), ADA is the coresponding native crytocurrency.</p><p>Special about the Cardano blockckain <3>official Cardano Webpage</3> is the completely research driven approach.</p>"
+    },
+    "staking": {
+      "title": "Staking",
+      "content": "<p>On a Proof of Stake algorithm the propability of verify a block is proportional to the ammount of stake (in this case how many ADA Coins)</p><p>As not everyone can or want to operate a Stakepool there is the possibility to delegate ADAs to a Stakepool.</p><p>It is important to note that the delegated ADA Coins do <strong>never</strong> belong to the Stakepool. You are always able to remove your coins from the wallet. A stakepool cannot access your coins.</p><p>To do staking <1>Staking Manual</1> you need to own purchase ADA Coins via an Exchange (kraken.com coinbase.com) and send it to a Wallet like Daedalus or Yoroi</p>"
+
+    }
+  },
   "info": {
     "title": "General Information",
     "aboutMe": {
@@ -34,6 +46,20 @@
     }
   },
   "demo": {
+    "comparison": {
+      "title":"Comparison POS POW",
+      "content": "<p>This Blockchain Demos are only verry simplified examples and are only the comparison between Proof of Work und Proof of Stake. Both algorithms are based on the concept of the hash which is always the input for the next block. With this it can be shown that only litte change in the input field results in an invalid blocks beginning at the block where the input has been changed. From a hash it is not possible to calculate the input. this is a core principle for any blockchain.</p><p>The idea of this demo is based on this <1>Visual Blockchain demo</1> but developed from scratch and adjusted show the difference between the two different concepts with the react framework</p>"
+
+    },
+    "pow": {
+      "title": "Proof of Work Blockchain",
+      "content": "<0>Basis of the Proof of Work algorithm is the work which is put into the block verification. To verify a block there has to be done a lot of work.</0><1>In this example there has to be found a nonce with a resulting hash which starts with a 0. The two miners \"mine\" as long as one has found the correct nonce. The probability <i>to create the output hash</i> and with this to verify a block block is proportional to the hashing power (how much hashes can be caldulated in a minute) of a miner.</1>"
+
+    },
+    "pos": {
+      "title": "Proof of Stake Blockchain",
+      "content": "<p>In contrast to proof of work, proof of stake does not count on the work which has benn put in but based on the stake. This means the more stake <i>in this case the more ADA coins</i> one owns the more the probability to elected to verify a block.</p><p>Cardano is a blockchain with proof of stake as underlying concept. Therefore the examples are sown with ADA. The proof of work algorithm from cardano is called Ouroboros. The challenge from a proof of stake algorithm is make a decentralized election of a stakeholder which should be eligible to verify a certain block. Ouroboros addreses this challenge with a random oracle function which is based on multiple previous blocks.</p><p>How the real Ouroboros algoritm works can be found <1>here</1></p><p>The here used proof of stake algorithm is very simplified and uses to sign the message the public key of the elected stakeholder. During the Signature procedure, the Stakeholder encrypts the signed message and checks if the input is the same as the result of the encryption. If the result is matching, then the verification was successful and the block will be green. If it does not match, then probably the wrong stakeholder tried to verify the block and block stays red/invalid."
+    },
     "heading": "Block #",
     "content": "Block Content",
     "predecessor": "Predecessor",

@@ -22,11 +22,23 @@
     "securityTitle": "Sicherheit",
     "securityContent": "<0>Das Kubernetes Cluster ist in der Schweiz gehostet und ist nur via eine https Verbindung erreichbar.</0><1>Es sind nur die beiden Relay Nodes gegen aussen sichtbar, der Block produzierende Node ist nur innerhalb des Kubernetes Clusters sichtbar.</1>"
   },
+  "cardano": {
+    "title": "Cardano und Staking",
+    "coin": {
+      "title": "Cardano und ADA",
+      "content": "<p>Cardano ist eine Proof of Work Blockchain (mehr dazu in der Demo <1>Vergleich POW POS</1>), ADA ist die native Kryptowährung dazu.</p><p>Das spezielle and der Cardano Blockchain <3>Cardano Webseite</3> ist es, dass sie komplett Wissenschaftlich getrieben ist.</p>"
+    },
+    "staking": {
+      "title": "Staking",
+      "content": "<p>Bei einem Proof of Stake Algorithmus ist die Wahrscheinlichkeit einen Block verififizieren zu dürfen proportional zum Stake (in dem Fall dem Betrag an ADA Coins)</p><p>Da nicht jeder ein eigenen Stakepool betreiben kann oder will gibt es die Möglichkeit seine ADAs einem Stakepool zur verfügung zu stellen (zu delegieren).</p><p>Wichtig hierbei ist es zu erwähnen, dass die delegierten ADAs <strong>nie</strong> dem Stakepool gehören. Sie sind jeweils jederzeit befähigt die Coins aus der Wallet herauszunehmen und der Stakepool hat keinen Zugriff auf die ADAs.</p><p>Um Staking zu betreiben <1>Staking Anleitung</1> benötigen sie ADA Coins kann via einer Exchange (kraken.com coinbase.com) gekauft werden und eine Wallet wie Daedalus oder Yoroi</p>"
+
+    }
+  },
   "info": {
     "title": "Generelle Informationen",
     "aboutMe": {
       "title": "Über mich",
-      "content": "<p>Nach meinem Studium zum Wirtschaftsingenieur stieg ich quasi als Quereinsteiger in die IT als Softwareentwickler bei einem Beratungsunternehmen ein. Dort konnte ich knapp zwei jahre lang Erfahrungen sammeln.</p><p>Nachdem ich genug Erfahrung gesammelt hatte und ich weil ich wieder zurück in das Berner Seeland (von dem her auch der name <strong>Seeland</strong> Stakepool) wechselte ich zu einer Schweizerischen Versicherung, bei der ich weiterhin als Software Entwickler arbeite.</p>"
+      "content": "<p>Nach meinem Studium zum Wirtschaftsingenieur stieg ich in die IT als Softwareentwickler bei einem Beratungsunternehmen ein. Dort konnte ich knapp zwei Jahre lang Erfahrungen sammeln.</p><p>Nachdem ich genug Erfahrung gesammelt hatte und ich weil ich wieder zurück in das Berner Seeland (von dem her auch der name <strong>Seeland</strong> Stakepool) wollte, wechselte ich zu einer Versicherung, bei der ich weiterhin als Software Entwickler arbeite.</p>"
     },
     "contact": {
       "title": "Kontakt",
@@ -34,6 +46,20 @@
     }
   },
   "demo": {
+    "comparison": {
+      "title":"Vergleich POS POW",
+      "content": "<p>Die hier vorgestellten Blockchain Demos sind nur stark vereinfachte Beispiele und dienen nur dem Vergleich zwischen Proof of Work und Proof of Stake. Beiden Algorithmen liegt das Konzept zugrunde, dass der Hash des letzten Blocks ein Input des nächsten Blocks ist. So kann beobachtet werden, dass ein input in einem vorderen Glied jeweils alle darauffolgenden Blöcke invalid werden lässt. Bei einem Hash ist es nicht möglich den input zu berechnen. Dies ist ein kern Prinzip jeder Blockchain.</p><p>Die Idee dieser Demo ist basierend auf <1>Visual Blockchain demo</1>, jedoch komplett neu programmiert und für den Vergleich ausgelegt mit dem React Framework</p>"
+
+    },
+    "pow": {
+      "title": "Proof of Work Blockchain",
+      "content": "<0>Basis des Proof of Work Algorithmus ist die Arbeit die in die Verifizierung gestekt wird. Um einen Block zu verifizieren muss also eine Arbeit geleistet werden.</0><1>In diesem Beispiel muss eine Nonce gefunden werden, die einen Hash mit einer beginnenden 0 ergibt. Die zwei Miners \"schürfen\" also so lange, bis einer von ihnen den richtigen Nonce gefunden hat. Die Wahrscheinlichkeit den Block Verifizieren zu können <i>den output Hash erzeugt zu haben</i> beeinflussen, indem man mehr Hashes pro Sekunde erzeugen kann. Dies wäre dann die Hashing Power.</1>"
+
+    },
+    "pos": {
+      "title": "Proof of Stake Blockchain",
+      "content": "<p>Im gegensatz zum proof of work, setzt proof of stake nicht auf die eingesetzte Arbeit, sondern auf den Stake. Das bedeutet, je mehr Stake <i>in diesem Fall bedeutet es je mehr Coins</i> man besitzt, desto höher ist die Wahrscheinlichkeit einen Block Verifizieren zu könen.</p><p>Cardano ist eine Blockchain, die auf proof of Stake setzt. Deshalb sind hier die Beispiele mit ADA. Der Cardano Blockchain liegt Ouroboros als POS Algorithmus zugrunde. Die Herausforderung beie einem Proof of Stake Algorithmus ist die dezentralisierte Wahl eines Stakeholders, der für die Verifizierung eines Blockes in Frage kommen soll. Ouroboros addresiert diese Herausforderung mit einer zufalls Oracle Funktion basierend auf mehreren vorangegangenen Blocks.</p><p>Wie der richtige Ouroboros Algorithmus funktioniert kann <1>hier</1> nachgelesen werden</p><p>Der hier verwendete proof of Stake ist sehr vereinfacht und verwendet für das Verschlüsseln der Nachricht den Öffentlichen Schlüssel des ausgewählten Stakepools. Beim Signieren des Blockes Entschlüsselt der Stakepool die verschlüsselte Nachricht und kontrolliert ob es den gleichen Input hat wie der Block selbst. Falls das Ergebniss übereinstimmt, dass ist es ein match und der Block wird grün. Falls es nicht übereinstimmt, dann versuchte wohl der falsche Stakepool den Block zu verifizieren und der Block bleibt rot/ungültig."
+    },
     "heading": "Block #",
     "content": "Block Inhalt",
     "predecessor": "Vorgänger",

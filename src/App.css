@@ -1,6 +1,6 @@
 .blockList {
   margin: 20px;
 }
-a {
+ div > a {
   padding-left: 20px;
 }

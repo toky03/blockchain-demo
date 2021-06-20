@@ -110,7 +110,7 @@ function App() {
                 </AppBar>
                 <div style={{display: 'flex', flexFlow: 'column', height: '100vh'}}>
                     <div style={{
-                        flex: '1 1 auto', backgroundColor: '#4f7fef',
+                        flex: '1 1 auto', backgroundColor: '#4f9eef2e',
                     }}>
                         <Router>
                             <Route path={'/'} exact component={() =>

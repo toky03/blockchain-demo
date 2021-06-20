@@ -84,6 +84,35 @@ function Overview() {
                     </Card>
                 </Grid>
                 <Typography variant='h1' color={'secondary'} align={'center'}>
+                    {t('cardano.title')}
+                </Typography>
+                <Grid container
+                      direction={'row'}
+                      justify="space-around"
+                      alignItems="stretch">
+                    <Card style={cardStyle} elevation={10}>
+                        <CardContent>
+                            <Typography variant="h4">
+                                {t('cardano.coin.title')}
+                            </Typography>
+                            <Trans i18nKey={'cardano.coin.content'}>
+                                Text<Link href={'/block-demo'}>Demo link</Link>text<Link href={'https://cardano.org/'}>Link</Link>test
+                            </Trans>
+                        </CardContent>
+                    </Card>
+                    <Card elevation={10} style={cardStyle}>
+                        <CardContent>
+                            <Typography variant="h4">
+                                {t('cardano.staking.title')}
+                            </Typography>
+                            <Trans i18nKey={'cardano.staking.content'}>
+                                Staking descriptionbeschreibung<Link href={'https://cardano.org/calculator/?calculator=delegator'}>Staking Anleitung</Link>staking betreiben
+                            </Trans>
+                        </CardContent>
+
+                    </Card>
+                </Grid>
+                <Typography variant='h1' color={'secondary'} align={'center'}>
                     {t('info.title')}
                 </Typography>
                 <Grid container

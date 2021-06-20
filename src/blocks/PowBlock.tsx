@@ -197,7 +197,7 @@ function PowBlock(props: BlockInputProps) {
             </Grid>
           </List>
         </CardContent>
-        <CardActions><Button onClick={calculateHash}>{t('demo.mine')}</Button></CardActions>
+        <CardActions><Button color={'primary'} onClick={calculateHash}>{t('demo.mine')}</Button></CardActions>
       </Card>
   )
 }

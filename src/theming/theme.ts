@@ -85,6 +85,8 @@ export const cardStyle: CSSProperties = {
     margin: '10px',
     textAlign: "center"
 };
+export const conceptDescriptionCardStyle: CSSProperties =
+    {...cardStyle, width: '100%', backgroundColor: '#6cd08c38', padding: '10px', textAlign: undefined}
 
 export const logoBackground: CSSProperties = {
     backgroundImage: 'url(./ssp_logo_light.svg)',
@@ -92,7 +94,7 @@ export const logoBackground: CSSProperties = {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '0 10vh',
     backgroundAttachment: "fixed",
-    backgroundPositionX: 'center',
+    backgroundPositionX: 'center'
 }
 
 export const minerCard = {
