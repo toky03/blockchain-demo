@@ -89,7 +89,7 @@ function initMiner(miner: Miner, content: string): Observable<MinerDisplay> {
     miner.hash = currentMiner.hash
     miner.nonce = currentMiner.nonce
     const newNonce = Math.floor(Math.random() * 500)
-    return sha256(content + (newNonce)).pipe(delay(miner.delay), map((hash: string) => ({
+    return sha256(content + (newNonce)).pipe(delay(miner.delay/10), map((hash: string) => ({
       name: miner.name,
       hash,
       nonce: newNonce
