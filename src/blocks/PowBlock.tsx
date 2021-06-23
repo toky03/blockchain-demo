@@ -151,7 +151,7 @@ function PowBlock(props: BlockInputProps) {
 
       })
       setMiners(updatedMiners)
-      if (miner.hash.startsWith('0')) {
+      if (miner.hash.startsWith('00')) {
         updateHash(miner.hash)
         setNonce(miner.nonce)
         return true;
@@ -165,7 +165,7 @@ function PowBlock(props: BlockInputProps) {
       <Card style={{
         ...cardStyle,
         width: '500px',
-        backgroundColor: calHash.startsWith('0') ? cardStyle.backgroundColor : '#ff000038',
+        backgroundColor: calHash.startsWith('00') ? cardStyle.backgroundColor : '#ff000038',
         margin: '10px'
       }}>
         <CardContent>
