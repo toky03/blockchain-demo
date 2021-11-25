@@ -17,7 +17,7 @@ function Contact() {
 
     const {t} = useTranslation();
 
-    const initialValues = {name: '', subject: '', message: ''};
+    const initialValues = {name: '', subject: '', message: '', sender: ''};
 
     const [open, setOpen] = useState(false);
 
@@ -33,7 +33,7 @@ function Contact() {
             .post("api/contact", formValue)
             .then(res => {
                 setOpen(true)
-                resetFormValues({name: '', subject: '', message: ''})
+                resetFormValues({name: '', subject: '', message: '', sender: ''})
             })
             .catch(err => console.log(err));
     }
@@ -66,6 +66,18 @@ function Contact() {
                                 required
                                 id="subject"
                                 label={t('form.subject')}
+                                variant="outlined"
+                            />
+                        </Grid>
+                        <Grid item>
+                            <TextField
+                                name={'sender'}
+                                onChange={handleChange}
+                                value={formValues.sender}
+                                required
+                                type={'email'}
+                                id="sender"
+                                label={t('form.sender')}
                                 variant="outlined"
                             />
                         </Grid>

@@ -12,7 +12,8 @@
     "name": "Name",
     "subject": "Subject",
     "message": "Message",
-    "confirmButton": "Send"
+    "confirmButton": "Send",
+    "sender": "Mail Address sender"
   },
   "headingCard": {
     "hostingTitle": "Hosting",
